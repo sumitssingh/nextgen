@@ -1,7 +1,4 @@
-var express = require('express');
-var app = express();
 
-app.get('/', function (req, res) {
    
     var sql = require("mssql");;
     var config = {
@@ -15,15 +12,10 @@ app.get('/', function (req, res) {
         if (err) console.log('err '+err);
         var request = new sql.Request();
            console.log("connected");
-        request.query('select * from Student', function (err, recordset) {
+        request.query("select * from viewDrCardCategories where working_date='20091023' union select * from viewDrCardClinicLocations where working_date='20091023' union select * from viewDrCardAppointments where working_date='20091023' order by description, begintime", function (err, recordset) {
             
             if (err) console.log(err)
             res.send(recordset);
             
         });
     });
-});
-
-var server = app.listen(5000, function () {
-    console.log('Server is running..');
-});
