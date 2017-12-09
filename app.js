@@ -1,9 +1,17 @@
 
    // var db = connect('heroku_95qwwgj8:6iuv3jlc5vkoqbfuf651agu0jv@ds023490.mlab.com:23490/heroku_95qwwgj8')
    var _ = require('underscore');
-   var mongoose = require('mongoose');
+   // var mongoose = require('mongoose');
     
-    var db = connect('mongodb://107.170.218.205:27017/panoProd');
+    // var db = connect('mongodb://107.170.218.205:27017/panoProd');
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://107.170.218.205:27017/mydb";
+
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      console.log("Database created!");
+      db.close();
+    });
     var sql = require("mssql");;
     var config = {
         user: 'svc_oncall',
