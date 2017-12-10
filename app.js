@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoProd';
+var url = 'mongodb://107.170.218.205:27017/panoProd2';
 
 // MongoClient.connect(url, function(err, db) {
 //   assert.equal(null, err);
@@ -37,7 +37,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd';
                 var appointmenTime = data.working_date + ' ' + data.begintime;
                 appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
                     var collection = db.collection('doctors');
-                         collection.insert({username:data.description,[{Appointment:appointmenTime}]}, function(err, result) {
+                         collection.insert({username:data.description,"Appointment":appointmenTime}, function(err, result) {
                         //collection.insert({username:'sumit'}, function(err, result) {
                             if (err) {
                                 console.log(err)
