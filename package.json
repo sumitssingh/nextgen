@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "mongodb": "^3.0.0-rc0",
+    "mongodb": "^2.2.33",
     "mssql": "^4.1.0",
     "underscore": "^1.8.3"
   }
