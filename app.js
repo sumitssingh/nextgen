@@ -22,7 +22,7 @@ var url = 'mongodb://107.170.18.205:27017/panoProd';
         if (err) console.log('err '+err);
         var request = new sql.Request();
            console.log("connected");
-        request.query("select * from viewDrCardCategories where working_date='20091023' union select * from viewDrCardClinicLocations where working_date='200$
+        request.query("select * from viewDrCardCategories where working_date='20091023' union select * from viewDrCardClinicLocations where working_date='20091023' union select * from viewDrCardAppointments where working_date='20091023' order by description, begintime", function (err, recordset) {
             if (err)  {
                 console.log(err)
             }MongoClient.connect(url, function(err, db) {
