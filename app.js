@@ -29,42 +29,62 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               assert.equal(null, err);
               console.log("Connected successfully to server");
             _.forEach(recordset.recordset, function(data) {
-                var appointment  = [];
-                var appointmenTime = data.working_date + ' ' + data.begintime;
-                appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
-                    var collection = db.collection('doctors');
-                         collection.insert({"username":data.description,"Appointment":appointment}, function(err, result) {
-                            if (err) {
-                                console.log(err)
-                            }else {
-                                console.log(result);
-                            }
-                        })
-                })
-                request.query("select distinct description from viewDrCardCategories", function (err, data) {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            for (var i = data.length - 1; i >= 0; i--) {
+                var newData = [
+                {
+                    "username":"",
+                    "Appointment":[]
+                }
+                ];
+                for (var i =0; i<data.length;i++){
+                    newData.username = data[i].description;
+                    newData.Appointment.push({'appointmenTime': data[i].working_date + ' ' + data[i].begintime, 'location': data[i].Location})
+                    data.splice(i,1);
 
-                            var collection = db.collection('doctors');
-                            collection.find({username:data.description}, function(err, doc){
-                                _.forEach(doc, function(data){
-                                    var appointment  = [];
-                                    appointment = data.Appointment;
-                                    collection.insert({"username":doc.username+1,"Appointment":appointment}, function(err, result) {
-                                    if (err) {
-                                        console.log(err)
-                                    }else {
-                                        console.log(result);
-                                    }
-                                })
-                            })
-                        })
+                    for (var j= i+1;j<data.length;j++){
+                        if (data[j].description === newData[i].username) {
+                            newData[i].Appointment.push({'appointmenTime': data[j].working_date + ' ' + data.begintime, 'location': data[j].Location});
+                            data.splice[j,1];
+                        }
                     }
-            db.close();
-            }
-        })
+                }
+                console.log(newData);
+                // var appointment  = [];
+                // var appointmenTime = data.working_date + ' ' + data.begintime;
+                // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
+                //     var collection = db.collection('doctors');
+                //          collection.insert({"username":data.description,"Appointment":appointment}, function(err, result) {
+                //             if (err) {
+                //                 console.log(err)
+                //             }else {
+                //                 console.log(result);
+                //             }
+                //         })
+                //          db.close();
+                })
+        //         request.query("select distinct description from viewDrCardCategories", function (err, data) {
+        //                 if (err) {
+        //                     console.log(err)
+        //                 } else {
+        //                     for (var i = data.length - 1; i >= 0; i--) {
+
+        //                     var collection = db.collection('doctors');
+        //                     collection.find({username:data.description}, function(err, doc){
+        //                         _.forEach(doc, function(data){
+        //                             var appointment  = [];
+        //                             appointment = data.Appointment;
+        //                             collection.insert({"username":doc.username+1,"Appointment":appointment}, function(err, result) {
+        //                             if (err) {
+        //                                 console.log(err)
+        //                             }else {
+        //                                 console.log(result);
+        //                             }
+        //                         })
+        //                     })
+        //                 })
+        //             }
+        //     db.close();
+        //     }
+        // })
 
         });
     });
