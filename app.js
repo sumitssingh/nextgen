@@ -47,7 +47,6 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         }
                     }
                 }
-console.log(newData);
                 // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
@@ -88,4 +87,5 @@ console.log(newData);
 
         });
     });
+           console.log(newData);
 })
