@@ -28,14 +28,15 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
             }MongoClient.connect(url, function(err, db) {
               assert.equal(null, err);
               console.log("Connected successfully to server");
-            _.forEach(recordset, function(data) {
+            // _.forEach(recordset, function(data) {
                 var newData = [
                 {
                     "username":"",
                     "Appointment":[]
                 }
                 ];
-                // console.log(data);
+                var data = recordset;
+                console.log(data.recordset[0]);
                 for (var i =0; i<data.recordset.length;i++) {
                     newData.username = data.recordset[i].description;
                     newData.Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
