@@ -43,7 +43,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         if (data.recordset[j].description === newData[i].username) {
                             newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
                             console.log(newData[i]);
-                            data.recordset.splice[i,1];
+                            data.recordset.splice[j,1];
                         }
                     }
                 }
