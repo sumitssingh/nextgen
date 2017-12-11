@@ -42,6 +42,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     data.recordset.splice(i,1);
 
                     for (var j= i+1;j<data.recordset.length;j++) {
+                        console.log(data.recordset[j].working_date);
                         if (data.recordset[j].description === newData[i].username) {
                             newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
                             data.recordset.splice[j,1];
