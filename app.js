@@ -35,19 +35,20 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     "Appointment":[]
                 }
                 ];
-                for (var i =0; i<data.length;i++){
+                console.log(data[0]);
+                for (var i =0; i<data.length;i++) {
                     newData.username = data[i].description;
                     newData.Appointment.push({'appointmenTime': data[i].working_date + ' ' + data[i].begintime, 'location': data[i].Location})
                     data.splice(i,1);
 
-                    for (var j= i+1;j<data.length;j++){
+                    for (var j= i+1;j<data.length;j++) {
                         if (data[j].description === newData[i].username) {
                             newData[i].Appointment.push({'appointmenTime': data[j].working_date + ' ' + data.begintime, 'location': data[j].Location});
                             data.splice[j,1];
                         }
                     }
                 }
-                console.log(newData);
+
                 // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
