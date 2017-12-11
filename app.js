@@ -25,7 +25,8 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
            request.query("select * from viewDrCardCategories where working_date='20091023' union select * from viewDrCardClinicLocations where working_date='20091023' union select * from viewDrCardAppointments where working_date='20091023' order by description, begintime", function (err, recordset) {
             if (err)  {
                 console.log(err)
-            }MongoClient.connect(url, function(err, db) {
+            }
+            MongoClient.connect(url, function(err, db) {
               assert.equal(null, err);
               console.log("Connected successfully to server");
             // _.forEach(recordset, function(data) {
@@ -51,7 +52,10 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         }
                     }
                 }
-                // var appointment  = [];
+            })
+        })        
+    })   
+})             // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
                 //     var collection = db.collection('doctors');
@@ -88,8 +92,11 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
         //     db.close();
         //     }
         // })
-console.log(newData);
-        });
+// console.log(newData);
+// 
+        // });
+            // })
+    // });
 
-    });
-})
+
+
