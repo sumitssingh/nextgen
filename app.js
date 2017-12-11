@@ -35,7 +35,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     "Appointment":[]
                 }
                 ];
-                console.log(data[0]);
+                console.log(data);
                 for (var i =0; i<data.length;i++) {
                     newData.username = data[i].description;
                     newData.Appointment.push({'appointmenTime': data[i].working_date + ' ' + data[i].begintime, 'location': data[i].Location})
