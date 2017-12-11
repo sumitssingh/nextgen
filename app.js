@@ -40,10 +40,10 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     }
                     // console.log(data.recordset[0]);
                     var newData = [];
-                for (var i =1; i<data.recordset.length;i++) {
+                for (var i =0; i<data.recordset.length-1;i++) {
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
                     // console.log(event.recordset[0]);
-                    for (var j= 1;j<event.recordset.length;j++) {
+                    for (var j= 0;j<event.recordset.length-1;j++) {
                         if (event.recordset[j].description === data.recordset[i].description) {
                             // var appointment  = [];
                             // var appointmenTime = data.working_date + ' ' + data.begintime;
