@@ -29,12 +29,10 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               assert.equal(null, err);
               console.log("Connected successfully to server");
             // _.forEach(recordset, function(data) {
-                var newData = [
-                {
-                    "username":"",
-                    "Appointment":[]
-                }
-                ];
+                var newData = {
+                        "username":"",
+                        "Appointment":[]
+                };
                 var data = recordset;
                 console.log(data.recordset[0]);
                 for (var i =0; i<data.recordset.length;i++) {
