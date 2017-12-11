@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoProd2';
+var url = 'mongodb://107.170.218.205:27017/panoProd3';
 
 // MongoClient.connect(url, function(err, db) {
 //   assert.equal(null, err);
