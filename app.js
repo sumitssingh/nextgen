@@ -30,12 +30,15 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               assert.equal(null, err);
               console.log("Connected successfully to server");
             // _.forEach(recordset, function(data) {
-                var newData = [];
+                
                 var event = recordset;
                 // console.log(data.recordset[0].description);
                 // console.log(newData[0]);
                 request.query("select distinct description from viewDrCardCategories", function (err, data) {
-
+                    if (err) {
+                        console.log(err)
+                    }
+                    var newData = [];
                 for (var i =1; i<data.length;i++) {
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
                     for (var j= 1;j<event.recordset.length;j++) {
