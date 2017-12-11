@@ -29,22 +29,19 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               assert.equal(null, err);
               console.log("Connected successfully to server");
             // _.forEach(recordset, function(data) {
-                var newData = [];
+                var newData = [{
+                        "username":"temp",
+                        "Appointment":[]
+                }];
                 var data = recordset;
-                // console.log(data.recordset[0].description);
+                console.log(data.recordset[0].description);
                 // console.log(newData[0]);
-                // for (var i =0; i<data.recordset.length;i++) {
-                for (var i =0; i<2;i++) {
-                    var appointment  = [];
-                    var appointmenTime = data.recordset[i].working_date + ' ' + data.recordset[i].begintime;
-                    appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
-                    newData.push({"username":data.recordset[i].description,"Appointment":appointment});
-                    // newData[i].Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
+                for (var i =0; i<data.recordset.length;i++) {
+                    newData[i].username = data.recordset[i].description;
+                    newData[i].Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
                     data.recordset.splice(i,1);
 
-                    // for (var j= i+1;j<data.recordset.length;j++) {
-                    for (var j= i+1;j<2;j++) {
-
+                    for (var j= i+1;j<data.recordset.length;j++) {
                         // console.log(data.recordset[j].working_date);
                         if (data.recordset[j].description === newData[i].username) {
                             newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
