@@ -42,12 +42,12 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         // console.log(data.recordset[j].working_date);
                         if (data.recordset[j].description === newData[i].username) {
                             newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
-                            console.log(newData[i]);
+                           // console.log(newData[i]);
                             data.recordset.splice[j,1];
                         }
                     }
                 }
-// console.log(newData);
+console.log(newData);
                 // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
