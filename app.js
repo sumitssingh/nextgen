@@ -35,7 +35,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     "Appointment":[]
                 }
                 ];
-                console.log(data);
+                // console.log(data);
                 for (var i =0; i<data.recordset.length;i++) {
                     newData.username = data.recordset[i].description;
                     newData.Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
@@ -48,7 +48,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         }
                     }
                 }
-
+console.log(newData);
                 // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
