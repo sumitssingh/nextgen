@@ -38,7 +38,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     if (err) {
                         console.log(err)
                     }
-                    console.log(data);
+                    console.log(event.recordset);
                     var newData = [];
                 for (var i =1; i<data.length;i++) {
                     newData.push({"username":data.description,"Appointment":[]});
