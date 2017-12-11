@@ -32,12 +32,13 @@ var url = 'mongodb://107.170.218.205:27017/panoProd2';
               // db.close();
             // });
             // });
+
             _.forEach(recordset.recordset, function(data) {
                 var appointment  = [];
                 var appointmenTime = data.working_date + ' ' + data.begintime;
                 appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
                     var collection = db.collection('doctors');
-                         collection.insert({username:data.description,"Appointment":appointmenTime}, function(err, result) {
+                         collection.insert({"username":data.description,"Appointment":appointment}, function(err, result) {
                         //collection.insert({username:'sumit'}, function(err, result) {
                             if (err) {
                                 console.log(err)
@@ -46,6 +47,12 @@ var url = 'mongodb://107.170.218.205:27017/panoProd2';
                             }
                         })
                 })
+                request.query("select distinct description from viewDrCardCategories", function (err, data) {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            console.log(data);
+                        }
             db.close();
             });
 
