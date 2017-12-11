@@ -28,7 +28,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
             }MongoClient.connect(url, function(err, db) {
               assert.equal(null, err);
               console.log("Connected successfully to server");
-            _.forEach(recordset.recordset, function(data) {
+            _.forEach(recordset, function(data) {
                 var newData = [
                 {
                     "username":"",
@@ -36,15 +36,15 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                 }
                 ];
                 console.log(data);
-                for (var i =0; i<data.length;i++) {
-                    newData.username = data[i].description;
-                    newData.Appointment.push({'appointmenTime': data[i].working_date + ' ' + data[i].begintime, 'location': data[i].Location})
-                    data.splice(i,1);
+                for (var i =0; i<data.recordset.length;i++) {
+                    newData.username = data.recordset[i].description;
+                    newData.Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
+                    data.recordset.splice(i,1);
 
-                    for (var j= i+1;j<data.length;j++) {
-                        if (data[j].description === newData[i].username) {
-                            newData[i].Appointment.push({'appointmenTime': data[j].working_date + ' ' + data.begintime, 'location': data[j].Location});
-                            data.splice[j,1];
+                    for (var j= i+1;j<data.recordset.length;j++) {
+                        if (data.recordset[j].description === newData[i].username) {
+                            newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
+                            data.recordset.splice[j,1];
                         }
                     }
                 }
