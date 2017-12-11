@@ -52,6 +52,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                         }
                     }
                 }
+                console.log(newData);
             })
         })        
     })   
