@@ -28,18 +28,12 @@ var url = 'mongodb://107.170.218.205:27017/panoProd2';
             }MongoClient.connect(url, function(err, db) {
               assert.equal(null, err);
               console.log("Connected successfully to server");
-              // insertDocuments(db, function() {
-              // db.close();
-            // });
-            // });
-
             _.forEach(recordset.recordset, function(data) {
                 var appointment  = [];
                 var appointmenTime = data.working_date + ' ' + data.begintime;
                 appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
                     var collection = db.collection('doctors');
                          collection.insert({"username":data.description,"Appointment":appointment}, function(err, result) {
-                        //collection.insert({username:'sumit'}, function(err, result) {
                             if (err) {
                                 console.log(err)
                             }else {
@@ -51,12 +45,27 @@ var url = 'mongodb://107.170.218.205:27017/panoProd2';
                         if (err) {
                             console.log(err)
                         } else {
-                            console.log(data);
-                        }
-            db.close();
-            });
+                            for (var i = data.length - 1; i >= 0; i--) {
 
+                            var collection = db.collection('doctors');
+                            collection.find({username:data.description}, function(err, doc){
+                                _.forEach(doc, function(data){
+                                    var appointment  = [];
+                                    appointment = data.Appointment;
+                                    collection.insert({"username":doc.username+1,"Appointment":appointment}, function(err, result) {
+                                    if (err) {
+                                        console.log(err)
+                                    }else {
+                                        console.log(result);
+                                    }
+                                })
+                            })
+                        })
+                    }
+            db.close();
+            }
+        })
 
         });
     });
-
+})
