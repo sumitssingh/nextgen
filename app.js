@@ -62,7 +62,7 @@ console.log(newData);
                 //             }
                 //         })
                 //          db.close();
-                })
+                
         //         request.query("select distinct description from viewDrCardCategories", function (err, data) {
         //                 if (err) {
         //                     console.log(err)
