@@ -51,8 +51,8 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                             // newData.push({'username''appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
                            // console.log(newData[i]);
                             // newData.push({"username":data.recordset[i].description,"Appointment":[]});
-                            console.log(newData);
-                            console.log(i);
+                            
+                            
                             newData[i].Appointment.push({'appointmenTime': event.recordset[j].working_date + ' ' + event.recordset[j].begintime, 'location': event.recordset[j].Location})
                     // data.recordset.splice(0,1);
                             // data.recordset.splice[j,1];
@@ -60,7 +60,18 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     }
                     // console.log(newData);
                 }
+                _.forEach(newData,function(list){
+                        var collection = db.collection('doctors');
+                                collection.insert({"username":list.username,"Appointment":list.Appointment}, function(err, result) {
+                            if (err) {
+                                console.log(err)
+                            }else {
+                                console.log(result);
+                            }
+                        })
+                         db.close();
                 
+                })
             })
         })        
     })   
