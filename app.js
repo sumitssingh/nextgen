@@ -31,7 +31,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
             // _.forEach(recordset, function(data) {
                 var newData = [];
                 var data = recordset;
-                console.log(data.recordset[0].description);
+                // console.log(data.recordset[0].description);
                 // console.log(newData[0]);
                 for (var i =0; i<data.recordset.length;i++) {
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
@@ -86,6 +86,6 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
         // })
 
         });
+                console.log(newData);
     });
-           console.log(newData);
 })
