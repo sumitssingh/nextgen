@@ -38,11 +38,11 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                     if (err) {
                         console.log(err)
                     }
-                    console.log(data.recordset[0]);
+                    // console.log(data.recordset[0]);
                     var newData = [];
                 for (var i =1; i<data.recordset.length;i++) {
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
-                    console.log(event.recordset[0]);
+                    // console.log(event.recordset[0]);
                     for (var j= 1;j<event.recordset.length;j++) {
                         if (event.recordset[j].description === data.recordset[i].description) {
                             // var appointment  = [];
@@ -51,6 +51,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                             // newData.push({'username''appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
                            // console.log(newData[i]);
                             // newData.push({"username":data.recordset[i].description,"Appointment":[]});
+                            console.log(newData[i]);
                             newData[i].Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
                     // data.recordset.splice(0,1);
                             // data.recordset.splice[j,1];
