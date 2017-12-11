@@ -30,20 +30,24 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               console.log("Connected successfully to server");
             // _.forEach(recordset, function(data) {
                 var newData = [];
-                var data = recordset;
+                var event = recordset;
                 // console.log(data.recordset[0].description);
                 // console.log(newData[0]);
-                for (var i =0; i<data.recordset.length;i++) {
-                    newData.push({"username":data.recordset[i].description,"Appointment":[]});
-                    newData[i].Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
-                    data.recordset.splice(0,1);
+                request.query("select distinct description from viewDrCardCategories", function (err, data) {
 
-                    for (var j= i+1;j<data.recordset.length;j++) {
-                        // console.log(data.recordset[j].working_date);
-                        if (data.recordset[j].description === newData[i].username) {
-                            newData[i].Appointment.push({'appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
+                for (var i =1; i<data.length;i++) {
+                    newData.push({"username":data.recordset[i].description,"Appointment":[]});
+                    for (var j= 1;j<event.recordset.length;j++) {
+                        if (event.recordset[j].description === data[i].description) {
+                            // var appointment  = [];
+                            // var appointmenTime = data.working_date + ' ' + data.begintime;
+                                // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
+                            // newData.push({'username''appointmenTime': data.recordset[j].working_date + ' ' + data.recordset[j].begintime, 'location': data.recordset[j].Location});
                            // console.log(newData[i]);
-                            data.recordset.splice[j,1];
+                            // newData.push({"username":data.recordset[i].description,"Appointment":[]});
+                            newData[i].Appointment.push({'appointmenTime': data.recordset[i].working_date + ' ' + data.recordset[i].begintime, 'location': data.recordset[i].Location})
+                    // data.recordset.splice(0,1);
+                            // data.recordset.splice[j,1];
                         }
                     }
                 }
@@ -86,6 +90,6 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
         // })
 console.log(newData);
         });
-                
+
     });
 })
