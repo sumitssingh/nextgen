@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoProd5';
+var url = 'mongodb://107.170.218.205:27017/panoProd6';
 
     var sql = require("mssql");;
     var config = {
@@ -32,7 +32,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd5';
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
                     for (var j= 0;j<event.recordset.length-1;j++) {
                         if (event.recordset[j].description === data.recordset[i].description) {
-                            newData[i].Appointment.push({'appointmenTime': event.recordset[j].working_date + ' ' + event.recordset[j].begintime, 'location': event.recordset[j].Location})
+                            newData[i].Appointment.push({'appointmenTime': event.recordset[j].working_date + ' ' + event.recordset[j].begintime, 'location': event.recordset[j].Location,appointmentType:event.recordset[j].Event,description:event.recordset[j].Details})
                         }
                     }
                 }
