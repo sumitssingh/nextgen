@@ -16,7 +16,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
         if (err) console.log('err '+err);
         var request = new sql.Request();
            console.log("connected");
-           request.query("select distinct description from viewDrCardClinicLocations", function (err, location) {
+           request.query("select * from viewDrCardClinicLocations", function (err, location) {
                      if (err) {
                         console.log(err)
                     }
