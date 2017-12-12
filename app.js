@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoProd3';
+var url = 'mongodb://107.170.218.205:27017/panoProd5';
 
     var sql = require("mssql");;
     var config = {
@@ -46,11 +46,26 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                             }
                         })
                 })
+                request.query("select distinct Location from viewDrCardClinicLocations", function (err, location) {
+                     if (err) {
+                        console.log(err)
+                    }
+                     _.forEach(location.recordset,function(list) {
+                        var collection = db.collection('locations');
+                                collection.insert({location:list.Location}, function(err, result) {
+                            if (err) {
+                                console.log(err)
+                            }else {
+                                console.log(result);
+                            }
+                        })
+                })
                 db.close();
             })
         })        
     })   
-})             // var appointment  = [];
+})     
+})        // var appointment  = [];
                 // var appointmenTime = data.working_date + ' ' + data.begintime;
                 // appointment.push({'appointmenTime': appointmenTime, 'location': data.Location})
                 //     var collection = db.collection('doctors');
