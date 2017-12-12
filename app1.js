@@ -16,11 +16,14 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
         if (err) console.log('err '+err);
         var request = new sql.Request();
            console.log("connected");
-           request.query("select * from viewDrCardCategories where working_date='20091023' union select * from viewDrCardClinicLocations where working_date='20091023' union select * from viewDrCardAppointments where working_date='20091023' order by description, begintime", function (err, recordset) {
+           request.query("select distinct description from viewDrCardClinicLocations", function (err, location) {
+                     if (err) {
+                        console.log(err)
+                    }
             if (err)  {
                 console.log(err)
             }
-            _.forEach(recordset.recordset, function(data){
+            _.forEach(location.recordset, function(data){
               console.log(data);
             })      
     })   
