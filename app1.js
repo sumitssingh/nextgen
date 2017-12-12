@@ -20,7 +20,7 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
                      if (err) {
                         console.log(err)
                     }
-            _.forEach(recordset.recordset, function(data){
+            _.forEach(location.recordset, function(data){
               console.log(data);
             })      
     })   
