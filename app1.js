@@ -26,8 +26,9 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               var day = data.working_date.slice(6,8);
               var hr = data.begintime.slice(0,2);
               var min = data.begintime.slice(2,4);
-              var time = month+'-'+day+'-'+year+' '+hr+':'+min
-              console.log(time.toDateString());
+              var time = month+'-'+day+'-'+year+' '+hr+':'+min;
+              var date = new Date(time);
+              console.log(date.toDateString());
             })     
     })   
 })   
