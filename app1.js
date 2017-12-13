@@ -28,7 +28,8 @@ var url = 'mongodb://107.170.218.205:27017/panoProd3';
               var min = data.begintime.slice(2,4);
               var time = month+'-'+day+'-'+year+' '+hr+':'+min;
               var date = new Date(time);
-              console.log(date.toDateString());
+              appointTime = date.toDateString() + ' ' +hr+':'+min;
+              console.log(appointmenTime)
             })     
     })   
 })   
