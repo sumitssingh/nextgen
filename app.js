@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoProd6';
+var url = 'mongodb://107.170.218.205:27017/panoProd7';
 
     var sql = require("mssql");;
     var config = {
@@ -32,7 +32,17 @@ var url = 'mongodb://107.170.218.205:27017/panoProd6';
                     newData.push({"username":data.recordset[i].description,"Appointment":[]});
                     for (var j= 0;j<event.recordset.length-1;j++) {
                         if (event.recordset[j].description === data.recordset[i].description) {
-                            newData[i].Appointment.push({'appointmenTime': event.recordset[j].working_date + ' ' + event.recordset[j].begintime, 'location': event.recordset[j].Location,appointmentType:event.recordset[j].Event,description:event.recordset[j].Details})
+                              var year = event.recordset[j].working_date.slice(0,4);
+                              var month = event.recordset[j].working_date.slice(4,6);
+                              var day = event.recordset[j].working_date.slice(6,8);
+                              if (event.recordset[j].begintime!=null) {
+                                 var hr = event.recordset[j].begintime.slice(0,2);
+                              var min = event.recordset[j].begintime.slice(2,4);
+                              }
+                              var time = month+'-'+day+'-'+year+' '+hr+':'+min;
+                              var date = new Date(time);
+                              var appointmenTime = date.toDateString() + ' ' +hr+':'+min;
+                            newData[i].Appointment.push({'appointmenTime': appointmenTime, 'location': event.recordset[j].Location,appointmentType:event.recordset[j].Event,description:event.recordset[j].Details})
                         }
                     }
                 }
