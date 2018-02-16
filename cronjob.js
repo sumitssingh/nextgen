@@ -2,7 +2,7 @@
     var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
   var _ = require('underscore');
-var url = 'mongodb://localhost:27017/panorama4';
+var url = 'mongodb://107.170.218.205:27017/panoramaNew';
 
     var sql = require("mssql");;
     var config = {
@@ -22,7 +22,7 @@ var newDate = date1[0]+date1[1]+date1[2];
         if (err) console.log('err '+err);
         var request = new sql.Request();
            console.log("connected");
-           request.query("select * from viewDrCardCategories where working_date="+newDate+" union select * from viewDrCardClinicLocations where working_date=="+newDate+" union select * from viewDrCardAppointments where working_date="+newDate+" order by description, begintime", function (err, recordset) {
+           request.query("select * from viewDrCardCategories where working_date="+newDate+" union select * from viewDrCardClinicLocations where working_date="+newDate+" union select * from viewDrCardAppointments where working_date="+newDate+" order by description, begintime", function (err, recordset) {
 
             if (err)  {
                 console.log(err)
@@ -68,11 +68,15 @@ var newDate = date1[0]+date1[1]+date1[2];
                 }
                 console.log('Total Records for doctors collections : ',data.recordset.length);
                 _.forEach(newData,function(list) {
-                        var collection = db.collection('doctors');
-                                collection.findAndModify({
+//                        var collection = db.collection('doctors');
+                             // collection.findAndModify({
+				db.command(
+				   {
+				      findAndModify: "doctors",	
                                 	query:{"username":list.username},
-                                	update: { $push: {"Appointment": eventsToupdate}}},
-                                	 function(err, user) {
+                                	update: { $push: {"Appointment": eventsToupdate}},
+					upsert: true
+				    },function(err, user) {
                                       // if (err){
                                             // collection.insert({"username":list.username,"Appointment":list.Appointment}, function(err, result) {
                                                  if (err) {
