@@ -2,7 +2,7 @@
 var MongoClient = require('mongodb').MongoClient
 , assert = require('assert');
 var _ = require('underscore');
-var url = 'mongodb://107.170.218.205:27017/panoramaNew';
+var url = 'mongodb://localhost:27017/panorama4';
 
 var sql = require("mssql");;
 var config = {
@@ -103,6 +103,7 @@ request.query("select * from Events", function (err, location) {
     {
       findAndModify: "specialities", 
       query:{"speciality":list.event},
+      update: {"speciality": list.event},
       upsert: true
     }, function(err, result) {
       if (err) {
@@ -124,7 +125,8 @@ request.query("select distinct Location from viewDrCardClinicLocations",function
     db.command(
     {
       findAndModify: "locations", 
-      query:{"speciality":list.Location},
+      query:{"location":list.Location},
+      update: {"location":list.Location},
       upsert: true
     }, function(err, result){
       if (err) {
