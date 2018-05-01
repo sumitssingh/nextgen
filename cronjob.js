@@ -16,8 +16,8 @@ var d = new Date();
 var n = d.toJSON();
 var date  = n.split('T');
 var date1 = date[0].split('-');
-// var newDate = '20180423';
-var newDate = process.argv[2] || date1[0]+date1[1]+date1[2];
+ var newDate = '20180423';
+// var newDate = process.argv[2] || date1[0]+date1[1]+date1[2];
 console.log('script is running for : ',newDate)
 
 sql.connect(config, function (err) {
@@ -85,7 +85,7 @@ sql.connect(config, function (err) {
                               {
                                 findAndModify: "doctors",
                                 query:{"username":list.username},
-                                update: { $push: {"Appointment": list.Appointment[i]}},
+                                update: { $addToSet: {Appointment: {appointmentTime: list.Appointment[i].appointmentTime, description:list.Appointment[i].description}}},
                                 upsert: true
                               },function(err, user) {
                                       // if (err){
